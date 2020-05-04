@@ -25,9 +25,21 @@ console.log(tableCells);
 // YOUR CODE GOES HERE!!! Do the steps below to complete this challenge
 
 // 1. Create a function to perfrom your search and give it two `parameters` — searchInput, names.  Inside the function's code block:
-  // 1a. Create two `console.log` statements to log out the `parameters` — searchInput, names 
+
+// 1a. Create two `console.log` statements to log out the `parameters` — searchInput, names 
+const highlightName = (searchInput, names) => {
+  console.log(searchInput);
+  console.log(names);
   // 1b. Loop over the `names` parameter
   // 1b. Remove the 'match' class name from each `names[i]` 
+  for (let i = 0; i < names.length; i++) {
+    names[i].classList.remove('match');
+    if (searchInput.value.length !== 0 && names[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
+      names[i].classList.add('match');
+    }
+  }
+
+}
   // 1c. Create a conditional that checks two conditions:
     // 1ca. If the `searchInput.value.length` does not equal the digit zero AND `names[i].textContent.toLowerCase()` `includes` `searchInput.value.toLowerCase())`
       // 1cb. Add the class name 'match` to `names[i]` 
@@ -44,7 +56,7 @@ submit.addEventListener('click', (event) => {
   event.preventDefault();
 
   // Invoke your search function here - Arguments: search, tableCells
- 
+ highlightName(search, tableCells);
 
   // Helpful log statement to test function
   console.log('Submit button is functional!');
@@ -54,7 +66,7 @@ submit.addEventListener('click', (event) => {
 search.addEventListener('keyup', () => {
 
   // Invoke your search function here - Arguments: search, tableCells
-
+  highlightName(search, tableCells);
 
   // Helpful log statement to test function
   console.log('Keyup event on the Search input is functional!');
